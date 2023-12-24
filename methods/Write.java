@@ -2,6 +2,7 @@ package methods;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.*;
 import users.*;
 
 
@@ -60,4 +61,15 @@ public class Write {
         }
     }
 
+    public static void overWrite(String fileName , List <String[]> data)
+    {
+        try (FileWriter fileWriter = new FileWriter(fileName, false)) {
+            for (String[] row : data) {
+                fileWriter.write(String.join(",", row));
+                fileWriter.write(System.lineSeparator());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

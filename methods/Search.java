@@ -5,7 +5,7 @@ public static String [] attendance(String fileName , int id)
 {
     
     String[] temp = new String[10];
-    temp = Read.Attendance(fileName);
+    temp = Read.attendance(fileName);
     while(temp != null)
     {
         
@@ -15,7 +15,7 @@ public static String [] attendance(String fileName , int id)
                 return temp;
             } 
             
-        temp = Read.Attendance(fileName);
+        temp = Read.attendance(fileName);
     }
     return null;
 }
