@@ -1,4 +1,5 @@
-import users.Admin;
+package test;
+import users.*;
 import users.Student;
 import users.Teacher;
 
@@ -7,19 +8,23 @@ public class Te {
         
         Teacher dagm = new Teacher("dagm", 1 , "pass");
         Student ermi = new Student("Ermias", 1);
+        Student ermu = new Student("elmo", 2);
 
         Admin admin = new Admin("admin", 0, "pass");
 
-        dagm.updateAssignment(ermi, 20);
-        dagm.updateAttendance(ermi, 4);
-        dagm.updateAttendance(ermi, 6);
+        admin.addTeacher(dagm);
+        admin.enroll_Student(ermi);
+        admin.enroll_Student(ermu);
 
-        dagm.updateAttendance(ermi, 2);
+        Teacher abebe = new Teacher("abe", 2, "1234");
+
+        admin.addTeacher(abebe);
+        admin.enroll_Student(ermu);
+
+        abebe.updateAttendance(ermu, 1);
         dagm.updateAttendance(ermi, 1);
-        dagm.updateFinal(ermi, 50);
-        dagm.updateMid(ermi, 23);
-        dagm.updateQuiz(ermi, 5);
-
+        System.out.print(dagm.attendancePercentage(ermi, 10));
+  
     }
 
 }
