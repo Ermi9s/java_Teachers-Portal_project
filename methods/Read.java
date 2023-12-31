@@ -52,22 +52,19 @@ public class Read {
         String [] data = new String[12];
         if (Input.one(data, fileName))
         {
-            Input.one(data, fileName);
             return data;
         }
         else
         {
             return null;
         }
-
     }
-
+    
     public static String[] markSheet(String fileName)
     {
         String [] data = new String[6]; 
         if (Input.one(data, fileName))
         {
-            Input.one(data, fileName);
             return data;
         }
         else
@@ -92,33 +89,58 @@ public class Read {
 
     public static List<String[]> takeTheWholeAttendance(String fileName)
         {
-            String[] temp = new String[12];
-            List<String[]> csvBody = new ArrayList<>();
-            while((temp = Read.attendance(fileName)) != null)
-            {
-                csvBody.add(temp);   
-            }     
-            return csvBody;
+            String line;
+            String csvSplitBy = ",";
+            List<String[]> myEntries = new ArrayList<>();
+    
+            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+                
+                while ((line = br.readLine()) != null) {
+                    String[] fields = line.split(csvSplitBy);
+                    myEntries.add(fields);
+                }
+      
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+             return myEntries;
         }
 
     public static List<String[]> takeTheWholeMark(String fileName)
         {
-            String[] temp = new String[6];
-            List<String[]> csvBody = new ArrayList<>();
-            while((temp = Read.markSheet(fileName)) != null)
-            {
-                csvBody.add(temp);   
-            }     
-            return csvBody;
+            String line;
+            String csvSplitBy = ",";
+            List<String[]> myEntries = new ArrayList<>();
+    
+            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+                
+                while ((line = br.readLine()) != null) {
+                    String[] fields = line.split(csvSplitBy);
+                    myEntries.add(fields);
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+             return myEntries;
         }
     public static List<String[]> takeTheWholeAdmin(String fileName)
         {
-            String[] temp = new String[3];
-            List<String[]> csvBody = new ArrayList<>();
-            while((temp = Read.adminFile(fileName)) != null)
-            {
-                csvBody.add(temp);   
-            }     
-            return csvBody;
+            String line;
+            String csvSplitBy = ",";
+            List<String[]> myEntries = new ArrayList<>();
+    
+            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+                
+                while ((line = br.readLine()) != null) {
+                    String[] fields = line.split(csvSplitBy);
+                    myEntries.add(fields);
+                }
+      
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return myEntries;
+            
         }
 }

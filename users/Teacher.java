@@ -13,8 +13,8 @@ public class Teacher extends User {
     public Teacher(String name, int id, String password) {
         super(name, id, password);
 
-        this.attendaceFileName = name + "(Attendace)";
-        this.markFilename = name + "(Mark)";
+        this.attendaceFileName = name + "(Attendance)"+ ".csv";
+        this.markFilename = name + "(Mark)" + ".csv";
 
     }
 
@@ -24,8 +24,7 @@ public class Teacher extends User {
 
         for(int i = 0; i < body.size(); ++i)
         {
-            int id = Integer.valueOf(body.get(i)[0]);
-            if(id == student.getId())
+            if(body.get(i)[0].equals(String.valueOf(student.getId())))
                 {
                     body.get(i)[day+1] ="P";
                     break;
@@ -41,8 +40,7 @@ public class Teacher extends User {
             body = Read.takeTheWholeMark(markFilename);
             for(int i = 0; i < body.size(); ++i)
                 {
-                    int id = Integer.valueOf(body.get(i)[0]);
-                    if(id == student.getId())
+                    if(body.get(i)[0].equals(String.valueOf(student.getId())))
                         {
                             body.get(i)[2] = String.valueOf(quiz);
                             break;
@@ -57,8 +55,8 @@ public class Teacher extends User {
             body = Read.takeTheWholeMark(markFilename);
             for(int i = 0; i < body.size(); ++i)
                 {
-                    int id = Integer.valueOf(body.get(i)[0]);
-                    if(id == student.getId())
+                   
+                    if(body.get(i)[0].equals(String.valueOf(student.getId())))
                         {
                             body.get(i)[3] = String.valueOf(mid);
                             break;
@@ -74,11 +72,12 @@ public class Teacher extends User {
             body = Read.takeTheWholeMark(markFilename);
             for(int i = 0; i < body.size(); ++i)
                 {
-                    int id = Integer.valueOf(body.get(i)[0]);
-                    if(id == student.getId())
+                    
+                    if(body.get(i)[0].equals(String.valueOf(student.getId())))
                         {
                             body.get(i)[4] = String.valueOf(ass);
                             break;
+                            
                         }
                 }
             Write.overWrite(markFilename, body);
@@ -89,31 +88,38 @@ public class Teacher extends User {
             body = Read.takeTheWholeMark(markFilename);
             for(int i = 0; i < body.size(); ++i)
                 {
-                    int id = Integer.valueOf(body.get(i)[0]);
-                    if(id == student.getId())
+                    if(body.get(i)[0].equals(String.valueOf(student.getId())))
                         {
                             body.get(i)[5] = String.valueOf(fin);
                             break;
                         }
+                        
                 }
             Write.overWrite(markFilename, body);
         }
 
-    public float attendancePercentage(Student student) 
+    public float attendancePercentage(Student student , int outOf) 
         {
-            float res;
-            String[] temp = new String[12];
-            temp = Search.attendance(attendaceFileName, student.getId());
             int count = 0;
-            for(int i=0; i< temp.length; ++i)
-            {
-                if(temp[i] == "P")
+            float res;
+            List<String[]> body = new ArrayList<>();
+            body = Read.takeTheWholeAttendance(attendaceFileName);
+            for(int i = 0; i < body.size(); ++i)
                 {
-                    count++;
+                    if(body.get(i)[0].equals(String.valueOf(student.getId())))
+                        {
+                            for(int j =0; j < body.get(i).length; j++)
+                            {
+                                if(body.get(i)[j].equals("P"))
+                                {
+                                    count += 1;
+                                }
+                            }
+                        }
+                        
                 }
-            }
 
-            res = (count * 100)/temp.length - 2;
+            res = (count * 100)/outOf;
             return res;
         }
 

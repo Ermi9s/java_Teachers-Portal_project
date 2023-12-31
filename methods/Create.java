@@ -9,8 +9,6 @@ public class Create {
     {
                 try (FileWriter fileWriter = new FileWriter(fileName)) {
 
-            // ola amigos euv new zrya message to let the u now the success  
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -21,7 +19,6 @@ public class Create {
     {
         try (FileWriter fileWriter = new FileWriter(fileName)) {
 
-            // file created message
 
         } catch (IOException e) {
             e.printStackTrace();

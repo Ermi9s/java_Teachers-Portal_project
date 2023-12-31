@@ -18,8 +18,8 @@ public class Student {
 
     public double calculatGrade(int quiz, int assignment, int mid, int finalExam) 
     {
-        float res;
-        res = ((quiz + assignment + mid + finalExam) * 4)/100;
+        double res;
+        res = ((quiz + assignment + mid + finalExam) * 4.00)/100;
         return res;
     }
 

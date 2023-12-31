@@ -8,9 +8,7 @@ public static String [] attendance(String fileName , int id)
     temp = Read.attendance(fileName);
     while(temp != null)
     {
-        
-
-        if(id == Integer.valueOf(temp[0]))
+        if(temp[0].equals(String.valueOf(temp)))
             {
                 return temp;
             } 
@@ -27,7 +25,7 @@ public static String [] markSheet(String fileName , int id)
     temp = Read.markSheet(fileName);
     while(temp != null)
     {
-        if(id == Integer.valueOf(temp[0]))
+        if(temp[0].equals(String.valueOf(temp)))
             {
                 return temp;
             } 
@@ -43,7 +41,7 @@ public static String [] admin(String fileName , int id)
     temp = Read.adminFile(fileName);
     while(temp != null)
     {
-        if(id == Integer.valueOf(temp[0]))
+        if(temp[0].equals(String.valueOf(temp)))
             {
                 return temp;
             } 
