@@ -1148,16 +1148,18 @@ public class loggedIn extends javax.swing.JFrame {
         Admin admin = new Admin( "", 1 , "","","");
         Teacher teacher = new Teacher(Transporter.getName() , Transporter.getId() , Transporter.getPassword() , Transporter.getEmail() , Transporter.getSec());
         String name = newName.getText();
-        String sec = UpSec.getText();
-        String email = Upemail.getText();
-        String password = Uppass.getText();
+        String sec = newSec.getText();
+        String email = newEmail.getText();
+        String password = newPass.getText();
         
-        if(!name.equals(null))
+        if(newName.isEnabled())
         {
             if(admin.updateName(teacher, name))
             {
                 JOptionPane.showMessageDialog(this,"Name has been Updated");
-            }
+                Teacher Nteacher = new Teacher(name , Transporter.getId() , Transporter.getPassword() , Transporter.getEmail() , Transporter.getSec());
+                Transporter T = new Transporter(Nteacher);
+            }   
             else
             {
                 JOptionPane.showMessageDialog(this,"This name already exists, please choose another one!!");
@@ -1165,11 +1167,13 @@ public class loggedIn extends javax.swing.JFrame {
             
         }
         
-        else if(!sec.equals(null))
+        else if(newSec.isEnabled())
         {
             if(admin.updateSection(teacher, sec))
             {
                 JOptionPane.showMessageDialog(this,"Section name has been Updated");
+                Teacher Nteacher = new Teacher(Transporter.getName() , Transporter.getId() , Transporter.getPassword() , Transporter.getEmail() , sec);
+                Transporter T = new Transporter(Nteacher);
             }
             else
             {
@@ -1177,11 +1181,13 @@ public class loggedIn extends javax.swing.JFrame {
             }
         }
         
-        else if(!email.equals(null))
+        else if(newEmail.isEnabled())
         {
             if(admin.updateEmail(teacher, email))
             {
                 JOptionPane.showMessageDialog(this,"email has been Updated");
+                Teacher Nteacher = new Teacher(Transporter.getName() , Transporter.getId() , Transporter.getPassword() , email , Transporter.getSec());
+                Transporter T = new Transporter(Nteacher);
             }
             else
             {
@@ -1189,10 +1195,12 @@ public class loggedIn extends javax.swing.JFrame {
             }
         }
         
-        else if(!password.equals(null))
+        else if(newPass.isEnabled())
         {
            admin.updatePassword(teacher, password);
            JOptionPane.showMessageDialog(this,"Password has been Updated");
+           Teacher Nteacher = new Teacher(Transporter.getName() , Transporter.getId() , password , Transporter.getEmail() , Transporter.getSec());
+           Transporter T = new Transporter(Nteacher);
         }
 
     }//GEN-LAST:event_commitActionPerformed
