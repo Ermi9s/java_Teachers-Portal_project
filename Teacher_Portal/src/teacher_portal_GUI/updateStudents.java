@@ -159,17 +159,25 @@ public class updateStudents extends javax.swing.JFrame {
 
     private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
         // TODO add your handling code here:
-        Teacher teacher = new Teacher(Transporter.getName() , Transporter.getId() , Transporter.getPassword() , Transporter.getEmail() , Transporter.getSec());
         
-        int row = editStudT.getSelectedRow();
-        
-        Student stud = new Student((String)editStudT.getValueAt(row, 1) , Integer.parseInt((String)editStudT.getValueAt(row, 0)) ,(String)editStudT.getValueAt(row, 2));
-        teacher.removeStud(stud);
-        
-        JOptionPane.showMessageDialog(this,stud.getName() + " has been removed from the class!");
-        loggedIn L = new loggedIn();
-        L.setVisible(true);
-        dispose();
+        if(editStudT.getSelectedRow() == -1)
+        {
+           JOptionPane.showMessageDialog(this, "Select a row first!");
+        }else
+        {
+            Teacher teacher = new Teacher(Transporter.getName() , Transporter.getId() , Transporter.getPassword() , Transporter.getEmail() , Transporter.getSec());
+
+            int row = editStudT.getSelectedRow();
+
+            Student stud = new Student((String)editStudT.getValueAt(row, 1) , Integer.parseInt((String)editStudT.getValueAt(row, 0)) ,(String)editStudT.getValueAt(row, 2));
+            teacher.removeStud(stud);
+
+            JOptionPane.showMessageDialog(this,stud.getName() + " has been removed from the class!");
+            loggedIn L = new loggedIn();
+            L.setVisible(true);
+            dispose();
+        }
+
     }//GEN-LAST:event_removeActionPerformed
 
     private void homeBtnpage(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnpage

@@ -6,7 +6,7 @@ import java.util.*;
 import users.*;
 
 
-public class Write {
+public interface Write {
 
     public static void toAdmin(Teacher teacher)
     {

@@ -3,7 +3,7 @@ package methods;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Search 
+public interface Search 
 {
 public static String [] attendance(String fileName , int id)
 {

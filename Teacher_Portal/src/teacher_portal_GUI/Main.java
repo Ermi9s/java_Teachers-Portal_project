@@ -10,17 +10,19 @@ package teacher_portal_GUI;
  */
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import methods.*;
 import users.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-public class PageOne extends javax.swing.JFrame {
+public class Main extends javax.swing.JFrame {
 
     /**
      * Creates new form Welcome
      */
-    public PageOne() {
+    public Main() {
         initComponents();
         SignUpPane.setVisible(false);
         login.setVisible(true);
@@ -59,6 +61,7 @@ public class PageOne extends javax.swing.JFrame {
         logInName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         LogInPassword = new javax.swing.JPasswordField();
+        forget = new javax.swing.JButton();
         sideBar = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         HomeBotton = new javax.swing.JButton();
@@ -235,6 +238,20 @@ public class PageOne extends javax.swing.JFrame {
         LogInPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         login.add(LogInPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 300, 60));
 
+        forget.setBackground(new java.awt.Color(24, 27, 25));
+        forget.setForeground(new java.awt.Color(0, 0, 204));
+        forget.setText("forgot password?");
+        forget.setBorder(null);
+        forget.setBorderPainted(false);
+        forget.setContentAreaFilled(false);
+        forget.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        forget.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                forgetActionPerformed(evt);
+            }
+        });
+        login.add(forget, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 130, 20));
+
         jLayeredPane1.setLayer(SignUpPane, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(login, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -392,7 +409,7 @@ public class PageOne extends javax.swing.JFrame {
         }
         else
         {
-            if(Password.teachers(userName, password))
+            if(Validate.teachers(userName, password))
             {
                 String fileName = "Admin.csv";
                 String[] loggedTeacher = new String[5];
@@ -462,12 +479,12 @@ public class PageOne extends javax.swing.JFrame {
               JOptionPane.showMessageDialog(this,"Invalid Email Adress");
               flag = false;
           }
-          if (!Password.isSectionValiad(sec))
+          if (!Validate.isSectionValiad(sec))
           {
               JOptionPane.showMessageDialog(this,"Section name Already Exists");
               flag = false;
           }
-          if(!Password.isNameValid(name))
+          if(!Validate.isNameValid(name))
           {
               JOptionPane.showMessageDialog(this,"User Name already exists, Please choose another name!");
               flag = false;
@@ -499,6 +516,49 @@ public class PageOne extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_SignUpConfirmPasswordActionPerformed
 
+    private void forgetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forgetActionPerformed
+        // TODO add your handling code here:
+        String userName = "";
+   
+        
+        userName = logInName.getText();
+        
+        if("".equals(userName))
+        {
+            JOptionPane.showMessageDialog(this,"Please Enter User name!");
+        }
+        else
+        {
+            if (Validate.teacherExist(userName))
+            {
+                String fileName = "Admin.csv";
+                String[] loggedTeacher = new String[5];
+                loggedTeacher = Search.admin(fileName, userName);
+
+                String pass = "your passwor is: " + loggedTeacher[2];
+                String email = loggedTeacher[3];   
+                
+                SendEmail forgetPass = new SendEmail (email , "Portal" , pass);
+                
+                try {
+                    if (forgetPass.send())
+                    {
+                        JOptionPane.showMessageDialog(this,"Password has been sent to your email");   
+                    } else {
+                    }
+                } catch (Exception ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this,"User Does not Exist!");
+            }
+       
+        }
+        
+    }//GEN-LAST:event_forgetActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -516,14 +576,18 @@ public class PageOne extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PageOne.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PageOne.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PageOne.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PageOne.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -532,7 +596,7 @@ public class PageOne extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PageOne().setVisible(true);
+                new Main().setVisible(true);
             }
         });
     }
@@ -550,6 +614,7 @@ public class PageOne extends javax.swing.JFrame {
     private javax.swing.JPanel SignUpPane;
     private javax.swing.JTextField SignUpSec;
     private javax.swing.JPanel center;
+    private javax.swing.JButton forget;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel15;

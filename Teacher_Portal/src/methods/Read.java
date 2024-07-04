@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-class Input
+interface Input
 {
     public static boolean one(String[] data , String fileName)
     {
@@ -45,7 +45,7 @@ class Input
     }
 }
 
-public class Read {
+public interface Read {
 
     public static String[] attendance(String fileName)
     {

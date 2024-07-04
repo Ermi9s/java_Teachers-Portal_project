@@ -133,7 +133,7 @@ public class EnrollStudents extends javax.swing.JFrame {
 
     private void finishEnrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishEnrollActionPerformed
         // TODO add your handling code here:
-        PageOne one = new PageOne();
+        Main one = new Main();
         one.setVisible(true);
         dispose();
     }//GEN-LAST:event_finishEnrollActionPerformed

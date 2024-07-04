@@ -36,7 +36,7 @@ public class Admin extends User {
     
     public Boolean updateEmail(Teacher teacher , String newEmail)
     {
-        if(Password.isValidEmail(newEmail))
+        if(Validate.isValidEmail(newEmail))
         {
             List<String[]> file = new ArrayList();
             file = Read.takeTheWholeAdmin();
@@ -61,7 +61,7 @@ public class Admin extends User {
     
     public Boolean updateName(Teacher teacher , String newName)
     {
-        if(Password.isNameValid(newName))
+        if(Validate.isNameValid(newName))
         {
             List<String[]> file = new ArrayList();
             file = Read.takeTheWholeAdmin();
@@ -119,7 +119,7 @@ public class Admin extends User {
     
     public Boolean updateSection(Teacher teacher , String newSec)
     {
-        if(Password.isSectionValiad(newSec))
+        if(Validate.isSectionValiad(newSec))
         {
           List<String[]> file = new ArrayList();
           file = Read.takeTheWholeAdmin();

@@ -8,8 +8,11 @@ import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -34,7 +37,9 @@ public class loggedIn extends javax.swing.JFrame {
         viewStat.setVisible(false);
         attendance.setVisible(false);
         updateMark.setVisible(false);
+        SendAtt.setVisible(false);
         profile.setVisible(false);
+        Announcement.setVisible(false);
         home.setVisible(true);
         welcomeName.setText(Transporter.getName());
         
@@ -85,11 +90,13 @@ public class loggedIn extends javax.swing.JFrame {
         centerPnl = new JPanelGradient();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         home = new JPanelGradient();
-        viewStudents = new javax.swing.JButton();
+        sendAttachments = new javax.swing.JButton();
         updateAttB = new javax.swing.JButton();
         updateMarkB = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         welcomeName = new javax.swing.JLabel();
+        viewStudents1 = new javax.swing.JButton();
+        announce = new javax.swing.JButton();
         attendance = new javax.swing.JPanel();
         panelTop1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -140,6 +147,19 @@ public class loggedIn extends javax.swing.JFrame {
         newSec = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
+        SendAtt = new javax.swing.JPanel();
+        viewBack1 = new javax.swing.JPanel();
+        subject = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jLabel26 = new javax.swing.JLabel();
+        jFileChooser = new javax.swing.JFileChooser();
+        Announcement = new javax.swing.JPanel();
+        Aback = new javax.swing.JPanel();
+        jLabel25 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        textarea = new javax.swing.JTextArea();
+        jLabel27 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         viewStat = new javax.swing.JPanel();
         viewBack = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -233,21 +253,21 @@ public class loggedIn extends javax.swing.JFrame {
         home.setOpaque(false);
         home.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        viewStudents.setBackground(new java.awt.Color(24, 27, 25));
-        viewStudents.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        viewStudents.setForeground(new java.awt.Color(153, 153, 153));
-        viewStudents.setText("View Student Status");
-        viewStudents.setBorder(null);
-        viewStudents.setPreferredSize(new java.awt.Dimension(200, 50));
-        viewStudents.setRolloverEnabled(false);
-        viewStudents.addActionListener(new java.awt.event.ActionListener() {
+        sendAttachments.setBackground(new java.awt.Color(0, 0, 0));
+        sendAttachments.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        sendAttachments.setForeground(new java.awt.Color(153, 153, 153));
+        sendAttachments.setText("Send Attchments");
+        sendAttachments.setBorder(null);
+        sendAttachments.setPreferredSize(new java.awt.Dimension(200, 50));
+        sendAttachments.setRolloverEnabled(false);
+        sendAttachments.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewStudentsActionPerformed(evt);
+                sendAttachmentsActionPerformed(evt);
             }
         });
-        home.add(viewStudents, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 380, 236, -1));
+        home.add(sendAttachments, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 240, -1));
 
-        updateAttB.setBackground(new java.awt.Color(24, 27, 25));
+        updateAttB.setBackground(new java.awt.Color(0, 0, 0));
         updateAttB.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         updateAttB.setForeground(new java.awt.Color(153, 153, 153));
         updateAttB.setText("Update Attendance");
@@ -259,9 +279,9 @@ public class loggedIn extends javax.swing.JFrame {
                 UpdateAttendance(evt);
             }
         });
-        home.add(updateAttB, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 236, -1));
+        home.add(updateAttB, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 240, -1));
 
-        updateMarkB.setBackground(new java.awt.Color(24, 27, 25));
+        updateMarkB.setBackground(new java.awt.Color(0, 0, 0));
         updateMarkB.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         updateMarkB.setForeground(new java.awt.Color(153, 153, 153));
         updateMarkB.setText("Update Mark Sheet");
@@ -273,7 +293,7 @@ public class loggedIn extends javax.swing.JFrame {
                 updateMarkBActionPerformed(evt);
             }
         });
-        home.add(updateMarkB, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 240, 236, -1));
+        home.add(updateMarkB, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 240, -1));
 
         jLabel2.setBackground(new java.awt.Color(102, 102, 102));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -284,7 +304,36 @@ public class loggedIn extends javax.swing.JFrame {
 
         welcomeName.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         welcomeName.setForeground(new java.awt.Color(153, 153, 153));
-        home.add(welcomeName, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 235, 36));
+        home.add(welcomeName, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 235, 50));
+
+        viewStudents1.setBackground(new java.awt.Color(0, 0, 0));
+        viewStudents1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        viewStudents1.setForeground(new java.awt.Color(153, 153, 153));
+        viewStudents1.setText("View Student Status");
+        viewStudents1.setBorder(null);
+        viewStudents1.setPreferredSize(new java.awt.Dimension(200, 50));
+        viewStudents1.setRolloverEnabled(false);
+        viewStudents1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewStudents1ActionPerformed(evt);
+            }
+        });
+        home.add(viewStudents1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, 240, -1));
+
+        announce.setBackground(new java.awt.Color(0, 0, 0));
+        announce.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        announce.setForeground(new java.awt.Color(153, 153, 153));
+        announce.setText("Announcement");
+        announce.setActionCommand("Announcement");
+        announce.setBorder(null);
+        announce.setPreferredSize(new java.awt.Dimension(200, 50));
+        announce.setRolloverEnabled(false);
+        announce.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                announceActionPerformed(evt);
+            }
+        });
+        home.add(announce, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 440, 240, 50));
 
         attendance.setBackground(new java.awt.Color(172, 161, 144));
         attendance.setPreferredSize(new java.awt.Dimension(777, 507));
@@ -674,6 +723,77 @@ public class loggedIn extends javax.swing.JFrame {
 
         profile.add(profileBack, java.awt.BorderLayout.CENTER);
 
+        SendAtt.setBackground(new java.awt.Color(24, 27, 25));
+        SendAtt.setPreferredSize(new java.awt.Dimension(777, 507));
+        SendAtt.setLayout(new java.awt.BorderLayout());
+
+        viewBack1.setBackground(new java.awt.Color(27, 27, 27));
+        viewBack1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        subject.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        viewBack1.add(subject, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, 240, 51));
+
+        jButton1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        jButton1.setText("SEND");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        viewBack1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 450, 120, 40));
+
+        jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setText("Enter subject/purpose:");
+        viewBack1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 160, 30));
+
+        jFileChooser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFileChooserActionPerformed(evt);
+            }
+        });
+        viewBack1.add(jFileChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 20, 630, 340));
+
+        SendAtt.add(viewBack1, java.awt.BorderLayout.CENTER);
+
+        Announcement.setBackground(new java.awt.Color(24, 27, 25));
+        Announcement.setPreferredSize(new java.awt.Dimension(777, 507));
+        Announcement.setLayout(new java.awt.BorderLayout());
+
+        Aback.setBackground(new java.awt.Color(27, 27, 27));
+        Aback.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel25.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setText("Make an announcement");
+        Aback.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 400, 50));
+
+        textarea.setBackground(new java.awt.Color(27, 27, 27));
+        textarea.setColumns(20);
+        textarea.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        textarea.setForeground(new java.awt.Color(255, 255, 255));
+        textarea.setRows(5);
+        textarea.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 2, true));
+        jScrollPane4.setViewportView(textarea);
+
+        Aback.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 420, 190));
+
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel27.setText("Enter message:");
+        Aback.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 90, 100, -1));
+
+        jButton2.setBackground(new java.awt.Color(51, 51, 51));
+        jButton2.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jButton2.setText("Broadcast");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        Aback.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(413, 323, 110, 40));
+
+        Announcement.add(Aback, java.awt.BorderLayout.CENTER);
+
         viewStat.setBackground(new java.awt.Color(24, 27, 25));
         viewStat.setPreferredSize(new java.awt.Dimension(777, 507));
         viewStat.setLayout(new java.awt.BorderLayout());
@@ -801,6 +921,8 @@ public class loggedIn extends javax.swing.JFrame {
         jLayeredPane1.setLayer(attendance, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(updateMark, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(profile, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(SendAtt, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(Announcement, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(viewStat, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
@@ -833,6 +955,16 @@ public class loggedIn extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(SendAtt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(Announcement, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -862,6 +994,16 @@ public class loggedIn extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(SendAtt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(Announcement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         centerPnl.add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 1030, 610));
@@ -878,6 +1020,8 @@ public class loggedIn extends javax.swing.JFrame {
         updateMark.setVisible(false);
         attendance.setVisible(false);
         profile.setVisible(false);
+        SendAtt.setVisible(false);
+        Announcement.setVisible(false);
         home.setVisible(true);
     }//GEN-LAST:event_homeBtnpage
 
@@ -886,6 +1030,8 @@ public class loggedIn extends javax.swing.JFrame {
         updateMark.setVisible(false);
         attendance.setVisible(false);
         home.setVisible(false);
+        SendAtt.setVisible(false);
+        Announcement.setVisible(false);
         profile.setVisible(true);
         
         Teacher teacher = new Teacher(Transporter.getName(), Transporter.getId(),Transporter.getPassword(),Transporter.getEmail(),Transporter.getSec());
@@ -908,6 +1054,8 @@ public class loggedIn extends javax.swing.JFrame {
         attendance.setVisible(false);
         home.setVisible(false);
         viewStat.setVisible(false);
+        SendAtt.setVisible(false);
+        Announcement.setVisible(false);
         updateMark.setVisible(true); 
         
         DefaultTableModel model = (DefaultTableModel) markTable.getModel();
@@ -935,6 +1083,8 @@ public class loggedIn extends javax.swing.JFrame {
         viewStat.setVisible(false);
         home.setVisible(false);
         updateMark.setVisible(false);
+        SendAtt.setVisible(false);
+        Announcement.setVisible(false);
         attendance.setVisible(true);
        
         DefaultTableModel model = (DefaultTableModel) attendaceTable.getModel();
@@ -960,7 +1110,7 @@ public class loggedIn extends javax.swing.JFrame {
 
     private void logOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutActionPerformed
         // TODO add your handling code here:
-        PageOne back = new PageOne();
+        Main back = new Main();
         back.setVisible(true);
         dispose();
     }//GEN-LAST:event_logOutActionPerformed
@@ -1000,77 +1150,105 @@ public class loggedIn extends javax.swing.JFrame {
 
     }//GEN-LAST:event_finishActionPerformed
 
-    private void viewStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewStudentsActionPerformed
-        // TODO add your handling code here:'
-        viewStat.setVisible(true);
-        DefaultTableModel model = (DefaultTableModel) viewTable.getModel();
-        model.setRowCount(0);
+    private void sendAttachmentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendAttachmentsActionPerformed
+        // TODO add your handling code here:
+        attendance.setVisible(false);
+        home.setVisible(false);
+        viewStat.setVisible(false);
+        SendAtt.setVisible(true);
+        Announcement.setVisible(false);
+        updateMark.setVisible(false);
         
-        String fileName;
-        fileName = Transporter.getName()+ Transporter.getSec()+"(Attendance).csv";
         
-        List<String[]> myData = new ArrayList<>();
-        myData = Read.takeTheWholeAttendance(fileName);
-        String[] display = new String[3];
         
-        for(int i = 1; i < myData.size(); ++i)
-        {
-            display[0] = myData.get(i)[0];
-            display[1] = myData.get(i)[1];
-            display[2] = myData.get(i)[12];
-            
-            model.addRow(display);
-        }
-        
-    }//GEN-LAST:event_viewStudentsActionPerformed
+    }//GEN-LAST:event_sendAttachmentsActionPerformed
 
     private void finalB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalB1ActionPerformed
         // TODO add your handling code here:
-        
-        Final F = new Final();
         int row = markTable.getSelectedRow();
-        String name = (String)markTable.getValueAt(row, 1);
-        int id = Integer.parseInt((String)markTable.getValueAt(row, 0));
-        Student std = new Student(name , id , "");
-        
-        TransportStud T = new TransportStud(std);
-        F.setVisible(true);
+        if(row != -1)
+        {
+            Final F = new Final();
+
+            String name = (String)markTable.getValueAt(row, 1);
+            int id = Integer.parseInt((String)markTable.getValueAt(row, 0));
+            Student std = new Student(name , id , "");
+
+            TransportStud T = new TransportStud(std);
+            F.setVisible(true);
+            
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Please select a row!");
+        }
+
+
     }//GEN-LAST:event_finalB1ActionPerformed
 
     private void QuizeB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuizeB1ActionPerformed
         // TODO add your handling code here:
-        Quiz F = new Quiz();
-        int row = markTable.getSelectedRow();
-        String name = (String)markTable.getValueAt(row, 1);
-        int id = Integer.parseInt((String)markTable.getValueAt(row, 0));
-        Student std = new Student(name , id , "");
         
-        TransportStud T = new TransportStud(std);
-        F.setVisible(true);
+        int row = markTable.getSelectedRow();
+        if(row != -1)
+        {
+            Quiz F = new Quiz();
+            String name = (String)markTable.getValueAt(row, 1);
+            int id = Integer.parseInt((String)markTable.getValueAt(row, 0));
+            Student std = new Student(name , id , "");
+
+            TransportStud T = new TransportStud(std);
+            F.setVisible(true);
+            
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Please select a row!");
+        }
+
     }//GEN-LAST:event_QuizeB1ActionPerformed
 
     private void assignB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignB1ActionPerformed
         // TODO add your handling code here:
-        Assignment F = new Assignment();
         int row = markTable.getSelectedRow();
-        String name = (String)markTable.getValueAt(row, 1);
-        int id = Integer.parseInt((String)markTable.getValueAt(row, 0));
-        Student std = new Student(name , id , "");
-        
-        TransportStud T = new TransportStud(std);
-        F.setVisible(true);
+        if(row != -1)
+        {
+            Assignment F = new Assignment();
+
+            String name = (String)markTable.getValueAt(row, 1);
+            int id = Integer.parseInt((String)markTable.getValueAt(row, 0));
+            Student std = new Student(name , id , "");
+
+            TransportStud T = new TransportStud(std);
+            F.setVisible(true);
+            
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Please select a row!");
+        }
+
     }//GEN-LAST:event_assignB1ActionPerformed
 
     private void midB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_midB1ActionPerformed
         // TODO add your handling code here:
-        Mid F = new Mid();
         int row = markTable.getSelectedRow();
-        String name = (String)markTable.getValueAt(row, 1);
-        int id = Integer.parseInt((String)markTable.getValueAt(row, 0));
-        Student std = new Student(name , id , "");
-        
-        TransportStud T = new TransportStud(std);
-        F.setVisible(true);
+        if(row != -1)
+        {
+            Mid F = new Mid();
+
+            String name = (String)markTable.getValueAt(row, 1);
+            int id = Integer.parseInt((String)markTable.getValueAt(row, 0));
+            Student std = new Student(name , id , "");
+
+            TransportStud T = new TransportStud(std);
+            F.setVisible(true);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Please select a row!");
+        }
+
     }//GEN-LAST:event_midB1ActionPerformed
 
     private void DTBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DTBActionPerformed
@@ -1152,7 +1330,7 @@ public class loggedIn extends javax.swing.JFrame {
         String email = newEmail.getText();
         String password = newPass.getText();
         
-        if(newName.isEnabled())
+        if(newName.isEnabled() && !name.equals(""))
         {
             if(admin.updateName(teacher, name))
             {
@@ -1167,7 +1345,7 @@ public class loggedIn extends javax.swing.JFrame {
             
         }
         
-        else if(newSec.isEnabled())
+        else if(newSec.isEnabled() && !sec.equals(""))
         {
             if(admin.updateSection(teacher, sec))
             {
@@ -1181,7 +1359,7 @@ public class loggedIn extends javax.swing.JFrame {
             }
         }
         
-        else if(newEmail.isEnabled())
+        else if(newEmail.isEnabled() && !email.equals(""))
         {
             if(admin.updateEmail(teacher, email))
             {
@@ -1195,7 +1373,7 @@ public class loggedIn extends javax.swing.JFrame {
             }
         }
         
-        else if(newPass.isEnabled())
+        else if(newPass.isEnabled() && !password.equals(""))
         {
            admin.updatePassword(teacher, password);
            JOptionPane.showMessageDialog(this,"Password has been Updated");
@@ -1204,6 +1382,129 @@ public class loggedIn extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_commitActionPerformed
+
+    private void viewStudents1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewStudents1ActionPerformed
+        
+        viewStat.setVisible(true);
+        DefaultTableModel model = (DefaultTableModel) viewTable.getModel();
+        model.setRowCount(0);
+        
+        String fileName;
+        fileName = Transporter.getName()+ Transporter.getSec()+"(Attendance).csv";
+        
+        List<String[]> myData = new ArrayList<>();
+        myData = Read.takeTheWholeAttendance(fileName);
+        String[] display = new String[3];
+        
+        for(int i = 1; i < myData.size(); ++i)
+        {
+            display[0] = myData.get(i)[0];
+            display[1] = myData.get(i)[1];
+            display[2] = myData.get(i)[12];
+            
+            model.addRow(display);
+        }
+
+    }//GEN-LAST:event_viewStudents1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        File file = jFileChooser.getSelectedFile();
+        String sub = subject.getText();
+        
+        
+        
+        if(sub.equals(""))
+        {
+            JOptionPane.showMessageDialog(this,  "Please complete the form!");
+        }
+        else
+        {
+            boolean flag = true;
+            String fileName;
+            fileName = Transporter.getName()+ Transporter.getSec()+"(Attendance).csv";
+
+            List<String[]> myData = new ArrayList<>();
+            myData = Read.takeTheWholeAttendance(fileName);
+            
+            for(int i = 1; i < myData.size();++i)
+            {
+                String email = myData.get(i)[12];
+                
+                String mess = "Dear "+ myData.get(i)[1] + " this an attachment is sent from your instructor " + Transporter.getName();
+                SendAttachment attach = new SendAttachment(file.getAbsolutePath() , email, Transporter.getName() , sub , mess );
+                if(!attach.send())
+                {
+                
+                    JOptionPane.showMessageDialog(this, "There seems to be a problem sending the email please check your connecton or the file path!");
+                    flag = false;
+                    break;
+                }
+                
+            }
+            if(flag)
+            {
+                JOptionPane.showMessageDialog(this,  "The attachment has been sent!");
+                SendAtt.setVisible(false);
+                home.setVisible(true);
+            }
+            
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jFileChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooserActionPerformed
+        // TODO add your handling code here:SSS
+        
+    }//GEN-LAST:event_jFileChooserActionPerformed
+
+    private void announceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_announceActionPerformed
+        // TODO add your handling code here:
+        
+        viewStat.setVisible(false);
+        updateMark.setVisible(false);
+        attendance.setVisible(false);
+        profile.setVisible(false);
+        SendAtt.setVisible(false);
+        Announcement.setVisible(true);
+        home.setVisible(false);
+    }//GEN-LAST:event_announceActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String text = textarea.getText();
+        
+        if (!text.equals(""))
+        {
+            String fileName;
+            fileName = Transporter.getName()+ Transporter.getSec()+"(Attendance).csv";
+
+            List<String[]> myData = new ArrayList<>();
+            myData = Read.takeTheWholeAttendance(fileName);
+            
+            for(int i = 1; i < myData.size();++i)
+            {
+                String email = myData.get(i)[12];
+                
+                
+                SendEmail broad = new SendEmail(email , Transporter.getName() , "Dear " + myData.get(i)[1]+ " " + text);
+                
+                try {
+                    if (broad.send())
+                    {
+                        JOptionPane.showMessageDialog(this,"Broadcast Successfull!");   
+                    } else {
+                    }
+                } catch (Exception ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(this, "There seems to be a problem sending the email please check your connecton!");
+                    break;
+                }
+                
+            }
+            
+        }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1244,6 +1545,8 @@ public class loggedIn extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Aback;
+    private javax.swing.JPanel Announcement;
     private javax.swing.JButton DTB;
     private javax.swing.JLabel Das;
     private javax.swing.JLabel Datt;
@@ -1253,6 +1556,7 @@ public class loggedIn extends javax.swing.JFrame {
     private javax.swing.JLabel Dquize;
     private javax.swing.JPanel Editorial;
     private javax.swing.JButton QuizeB1;
+    private javax.swing.JPanel SendAtt;
     private javax.swing.JLabel Temail;
     private javax.swing.JLabel Tname;
     private javax.swing.JLabel Tpass;
@@ -1262,6 +1566,7 @@ public class loggedIn extends javax.swing.JFrame {
     private javax.swing.JButton Upemail;
     private javax.swing.JButton Upenroll;
     private javax.swing.JButton Uppass;
+    private javax.swing.JButton announce;
     private javax.swing.JButton assignB1;
     private javax.swing.JTable attendaceTable;
     private javax.swing.JPanel attendance;
@@ -1275,6 +1580,9 @@ public class loggedIn extends javax.swing.JFrame {
     private javax.swing.JButton finish;
     private javax.swing.JPanel home;
     private javax.swing.JButton homeBtn;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JFileChooser jFileChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1292,6 +1600,9 @@ public class loggedIn extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1305,6 +1616,7 @@ public class loggedIn extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton logOut;
     private javax.swing.JPanel mainPnl;
     private javax.swing.JPanel markBack;
@@ -1321,12 +1633,16 @@ public class loggedIn extends javax.swing.JFrame {
     private javax.swing.JPanel profile;
     private javax.swing.JPanel profileBack;
     private javax.swing.JButton profileBtn;
+    private javax.swing.JButton sendAttachments;
+    private javax.swing.JTextField subject;
+    private javax.swing.JTextArea textarea;
     private javax.swing.JButton updateAttB;
     private javax.swing.JPanel updateMark;
     private javax.swing.JButton updateMarkB;
     private javax.swing.JPanel viewBack;
+    private javax.swing.JPanel viewBack1;
     private javax.swing.JPanel viewStat;
-    private javax.swing.JButton viewStudents;
+    private javax.swing.JButton viewStudents1;
     private javax.swing.JTable viewTable;
     private javax.swing.JLabel welcomeName;
     // End of variables declaration//GEN-END:variables

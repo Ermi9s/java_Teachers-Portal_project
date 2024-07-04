@@ -3,7 +3,7 @@ package methods;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Create {
+public interface Create {
 
     public static void attendaceFile(String fileName)
     {

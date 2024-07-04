@@ -3,7 +3,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-public class Password {
+
+
+public interface Validate {
 
     public static Boolean admins(String passkey)
     {
@@ -26,6 +28,22 @@ public class Password {
         for(int i = 0; i < adminFile.size(); ++i)
         {
             if(adminFile.get(i)[1].equals(name) && adminFile.get(i)[2].equals(passkey))
+            {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    public static Boolean teacherExist(String name)
+    {
+        List<String[]> adminFile = new ArrayList<>();
+        adminFile = Read.takeTheWholeAdmin();
+
+        for(int i = 0; i < adminFile.size(); ++i)
+        {
+            if(adminFile.get(i)[1].equals(name))
             {
                 return true;
             }
