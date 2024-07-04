@@ -24,7 +24,8 @@ once a teacher signs-up 2 files will be creates.
 #### [teacher-name]+[section] + (Attendance).csv
 and
 #### [teacher-name]+[section] + (Mark).csv
-For each registered teacher!
+####For each registered teacher!
+
 Notice the teacher name and section name are used in the file naming, this means the username has to be unique which is inforced in the app.
 
 ## Screenshot
