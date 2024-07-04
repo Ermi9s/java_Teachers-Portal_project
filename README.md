@@ -19,12 +19,12 @@ This tool enables teachers to manage attendance, marksheets, announcements, and 
 ## Usage Manual
 
 When the tool starts it assumes admin.csv file exists, this file is the file where registered teachers will be maintained and therefore should exist at all times, 
-if not it ll create a new one.
+if not it will create a new one.
 once a teacher signs-up 2 files will be creates.
 #### [teacher-name]+[section] + (Attendance).csv
 and
 #### [teacher-name]+[section] + (Mark).csv
-
+For each registered teacher!
 Notice the teacher name and section name are used in the file naming, this means the username has to be unique which is inforced in the app.
 
 ## Screenshot
