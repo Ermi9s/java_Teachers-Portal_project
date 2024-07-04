@@ -16,16 +16,37 @@ This tool enables teachers to manage attendance, marksheets, announcements, and 
 - **File System Backend:** A simple yet effective backend that utilizes the file system for data storage, making it easy to set up and maintain.
 
 
+## Usage Manual
+
+When the tool starts it assumes admin.csv file exists, this file is the file where registered teachers will be maintained and therefore should exist at all times, 
+if not it ll create a new one.
+once a teacher signs-up 2 files will be creates.
+#### [teacher-name]+[section] + (Attendance).csv
+and
+#### [teacher-name]+[section] + (Mark).csv
+
+Notice the teacher name and section name are used in the file naming, this means the username has to be unique which is inforced in the app.
+
 ## Screenshot
 
-###SingUp and LogIn
+### SingUp and LogIn
 ![Screenshot of the application](https://github.com/Ermi9s/java_project_oop/blob/main/Teacher_Portal/ScreenShots/sign-up.png)
-##---------------------------------------------------------------------------------------------------------
 ![Screenshot of the application](https://github.com/Ermi9s/java_project_oop/blob/main/Teacher_Portal/ScreenShots/login.png)
-## Installation
 
-Instructions for installation.
+## ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+### Main DashBoard
+![Screenshot of the application](https://github.com/Ermi9s/java_project_oop/blob/main/Teacher_Portal/ScreenShots/DashBoard.png)
 
-## Usage
+## ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+### Attendance, Marksheet and Student status
+![Screenshot of the application](https://github.com/Ermi9s/java_project_oop/blob/main/Teacher_Portal/ScreenShots/marksheet.png)
+![Screenshot of the application](https://github.com/Ermi9s/java_project_oop/blob/main/Teacher_Portal/ScreenShots/marksheet2.png)
+![Screenshot of the application](https://github.com/Ermi9s/java_project_oop/blob/main/Teacher_Portal/ScreenShots/student-stats.png)
 
-Instructions for usage.
+## ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+### Sending Attachments and Announcements
+![Screenshot of the application](https://github.com/Ermi9s/java_project_oop/blob/main/Teacher_Portal/ScreenShots/send-attachments.png)
+![Screenshot of the application](https://github.com/Ermi9s/java_project_oop/blob/main/Teacher_Portal/ScreenShots/announcements.png)
+
+
+
