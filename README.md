@@ -17,9 +17,11 @@ This tool enables teachers to manage attendance, marksheets, announcements, and 
 
 
 ## Screenshot
-!https://github.com/Ermi9s/java_project_oop/blob/main/Teacher_Portal/ScreenShots/sign-up.png
-![Screenshot of the application](https://github.com/Ermi9s/java_project_oop/blob/main/Teacher_Portal/ScreenShots/sign-up.png)
 
+###SingUp and LogIn
+![Screenshot of the application](https://github.com/Ermi9s/java_project_oop/blob/main/Teacher_Portal/ScreenShots/sign-up.png)
+##---------------------------------------------------------------------------------------------------------
+![Screenshot of the application](https://github.com/Ermi9s/java_project_oop/blob/main/Teacher_Portal/ScreenShots/login.png)
 ## Installation
 
 Instructions for installation.
